@@ -24,6 +24,8 @@ func helloHandler(w http.ResponseWriter, r *http.Request) {
 func main() {
 	fmt.Println("Creating Web Server in Golang")
 
+	fileServer := http.FileServer(http.Dir("./static"))
+	http.Handle("/", fileServer)
 	http.HandleFunc("/hello", helloHandler)
 
 	fmt.Println("Starting server at port 8080")
